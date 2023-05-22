@@ -1,0 +1,105 @@
+"Games"
+{
+	"csgo"
+	{
+		"Signatures"
+		{
+			"DoEntFireByInstanceHandle"
+			{
+				"library" "server"
+
+				// __stdcall
+				"windows" "\x55\x8B\xEC\x83\xEC\x18\x8B\x45\x0C\x53\x33\xDB"
+
+				// __cdecl - IDA
+				// 55 89 E5 57 56 53 BB ? ? ? ? 83 EC 4C 
+				"linux" "\x55\x89\xE5\x57\x56\x53\xBB\x2A\x2A\x2A\x2A\x83\xEC\x4C"
+			}
+
+			"DoEntFire"
+			{
+				"library" "server"
+
+				// __stdcall
+				"windows" "\x55\x8B\xEC\x83\xEC\x18\x8B\x45\x08\x53\x33\xDB"
+
+				// __cdecl - IDA
+				// 55 89 E5 57 56 8D 75 C4 53 83 EC 54 
+				"linux" "\x55\x89\xE5\x57\x56\x8D\x75\xC4\x53\x83\xEC\x54"
+			}
+
+			"AllocPooledString"
+			{
+				"library" "server"
+
+				// __thiscall - IDA
+				"windows" "\x55\x8B\xEC\x83\xEC\x0C\x8D\x45\x08"
+
+				// __userpurge - IDA
+				// 55 89 E5 53 83 EC 04 8B 45 0C 8B 5D 08 85 C0 74 ? 80 38 00  
+				"linux" "\x55\x89\xE5\x53\x83\xEC\x04\x8B\x45\x0C\x8B\x5D\x08\x85\xC0\x74\x2A\x80\x38\x00"
+			}
+
+			"RemovePooledString"
+			{
+				"library" "server"
+
+				// __stdcall - IDA
+				"windows" "\x55\x8B\xEC\x56\x8D\x45\x08"
+
+				// __cdecl - IDA
+				// 55 89 E5 57 56 53 83 EC 2C 8B 45 08 0F B7 1D ? ? ? ? 
+				"linux" "\x55\x89\xE5\x57\x56\x53\x83\xEC\x2C\x8B\x45\x08\x0F\xB7\x1D\x2A\x2A\x2A\x2A"
+			}
+
+			"CGameText::SetText"
+			{
+				"library" "server"
+
+				// __thiscall
+				"windows" "\x55\x8B\xEC\x56\x8B\xF1\x8B\x4D\x2A\x83\xC1\x08\x83\x79\x2A\x02\x75\x2A\x8B\x01\x85\xC0\x75\x2A\xC7\x86\x2A\x2A\x2A\x2A\x00\x00\x00\x00\x5E\x5D\xC2\x04\x00\xE8\x2A\x2A\x2A\x2A\x85\xC0\x74\x2A\x80\x38\x00\x74\x2A\x50"
+
+				// __cdecl - IDA
+				// !! UNTESTED !!
+				// 55 89 E5 83 EC 20 FF 75 0C 8D 45 F4 50 E8 ? ? ? ? 8B 55 F4 8B 45 08 83 C4 0C 89 90 B0 03 00 00 
+				"linux" "\x55\x89\xE5\x83\xEC\x20\xFF\x75\x0C\x8D\x45\xF4\x50\xE8\x2A\x2A\x2A\x2A\x8B\x55\xF4\x8B\x45\x08\x83\xC4\x0C\x89\x90\xB0\x03\x00\x00"
+			}
+
+			"CBaseEntity::KeyValue"
+			{
+				"library" "server"
+
+				// __thiscall
+				"windows" "\x55\x8B\xEC\x83\xE4\xC0\x83\xEC\x34\x53\x56\x8B\x75\x2A\x57"
+
+				// __cdecl - IDA
+				// 55 89 E5 57 56 53 83 EC 54 8B 75 0C 6A 23 
+				"linux" "\x55\x89\xE5\x57\x56\x53\x83\xEC\x54\x8B\x75\x0C\x6A\x23"
+			}
+
+			"CEventAction::CEventAction"
+			{
+				"library" "server"
+
+				// __thiscall
+				"windows" "\x55\x8B\xEC\xA1\x2A\x2A\x2A\x2A\x81\xEC\x00\x01\x00\x00"
+
+				// __cdecl - IDA
+				// 55 89 E5 57 56 53 81 EC 2C 01 00 00 8B 5D 08 65 A1 14 00 00 00 89 45 E4 31 C0 A1 ? ? ? ? 8B 7D 0C 
+				"linux" "\x55\x89\xE5\x57\x56\x53\x81\xEC\x2C\x01\x00\x00\x8B\x5D\x08\x65\xA1\x14\x00\x00\x00\x89\x45\xE4\x31\xC0\xA1\x2A\x2A\x2A\x2A\x8B\x7D\x0C"
+			}
+
+			"CCSGameRules::CleanUpMap"
+			{
+				"library" "server"
+
+				// __thiscall
+				"windows" "\x55\x8B\xEC\x83\xEC\x14\x8B\xC1\x53"
+
+				// __cdecl - IDA
+				// 55 89 E5 57 56 53 83 EC 2C 8B 45 08 80 B8 91 02 00 00 00
+				"linux" "\x55\x89\xE5\x57\x56\x53\x83\xEC\x2C\x8B\x45\x08\x80\xB8\x91\x02\x00\x00\x00"
+			}
+		}
+	}
+}

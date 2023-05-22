@@ -77,7 +77,6 @@ CGameStringPool* g_pGameStringPool;
 
 CDetour* g_pSetText;
 CDetour* g_pKeyValue;
-CDetour* g_pCEventAction;
 CDetour* g_pDoEntFireByInstanceHandle;
 CDetour* g_pDoEntFire;
 CDetour* g_pCleanUpMap;
@@ -254,14 +253,6 @@ DETOUR_DECL_MEMBER2(CBaseEntity__KeyValue, bool, const char*, szKeyName, const c
     return ret;
 }
 
-DETOUR_DECL_MEMBER1(CEventAction__CEventAction, void, const char*, pActionData)
-{
-    // todo
-    // NOT IMPL
-    // Parse action and value using nexttoken()
-    DETOUR_MEMBER_CALL(CEventAction__CEventAction)(pActionData);
-}
-
 DETOUR_DECL_STATIC6(DoEntFireByInstanceHandle, void, void*, hTarget, const char*, pszAction, const char*, pszValue, float, delay, void*, hActivator, void*, hCaller)
 {
     DETOUR_STATIC_CALL(DoEntFireByInstanceHandle)(hTarget, pszAction, pszValue, delay, hActivator, hCaller);
@@ -313,7 +304,6 @@ bool PooledStringFix::SDK_OnLoad(char* error, size_t maxlength, bool late)
 
     g_pSetText = DETOUR_CREATE_MEMBER(CGameText__SetText, "CGameText::SetText");
     g_pKeyValue = DETOUR_CREATE_MEMBER(CBaseEntity__KeyValue, "CBaseEntity::KeyValue"); // CEnvHudHint, CMessage, CGameText & more
-    g_pCEventAction = DETOUR_CREATE_MEMBER(CEventAction__CEventAction, "CEventAction::CEventAction");
     g_pDoEntFireByInstanceHandle = DETOUR_CREATE_STATIC(DoEntFireByInstanceHandle, "DoEntFireByInstanceHandle");
     g_pDoEntFire = DETOUR_CREATE_STATIC(DoEntFire, "DoEntFire");
     g_pCleanUpMap = DETOUR_CREATE_MEMBER(CCSGameRules__CleanUpMap, "CCSGameRules::CleanUpMap");
@@ -346,11 +336,6 @@ bool PooledStringFix::SDK_OnLoad(char* error, size_t maxlength, bool late)
     if (g_pRemovePooledString)
         g_pRemovePooledString->EnableDetour();
 
-    /*
-    if (g_pCEventAction)
-        g_pCEventAction->EnableDetour();
-    */
-
     // init
     g_pShareSys->RegisterLibrary(myself, "PooledStringFix");
 
@@ -373,9 +358,6 @@ void PooledStringFix::SDK_OnUnload()
 
     if (g_pCleanUpMap)
         g_pCleanUpMap->Destroy();
-
-    if (g_pCEventAction)
-        g_pCEventAction->Destroy();
 
     if (g_pAllocPooledString)
         g_pAllocPooledString->Destroy();
